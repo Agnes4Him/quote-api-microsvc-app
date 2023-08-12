@@ -7,8 +7,9 @@ const Home = () => {
 
     const handleOnClick = (e) => {
         e.preventDefault()
-        const url = 'http://localhost:3333'
-        fetch(`${url}/`)
+        //const url = 'http://localhost:3333'
+        const url = process.env.REACT_APP_BACKEND_URL
+        fetch(url)
         .then((response) => {
             return response.json()
         })
@@ -32,7 +33,7 @@ const Home = () => {
         })
         .catch((err) => {
             setError("Unable to fetch text. Try again later.")
-            setText({})
+            setText(null)
             setTimeout(() => {
                 setText(null)
                 setError("")
