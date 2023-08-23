@@ -1,11 +1,13 @@
 const request = require('request');
 const dotenv = require('dotenv')
+const {httpRequestsTotal, httpRequestsDurationSeconds} = require("../controllers/monitoringController")
 
 dotenv.config()
 
 const category = 'inspirational';
 exports.displayText = (req, res) => {
     if (req) {
+        const start = new Date()
         request.get({
             url: `https://api.api-ninjas.com/v1/quotes?category=${category}`,
             headers: {
@@ -23,5 +25,8 @@ exports.displayText = (req, res) => {
                 res.status(200).json({message : JSON.parse(body)})
             }
         });
+        const end = new Date() - start
+        httpRequestsDurationSeconds.observe(end/1000)
+        httpRequestsTotal.inc()
     }
 }

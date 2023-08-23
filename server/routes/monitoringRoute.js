@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
-const monitoringController = require("../controllers/monitoringController")
+const {sendMetrics} = require("../controllers/monitoringController")
 
-router.get("/metrics", monitoringController.sendMonitoringMetrics)
+router.get("/metrics", sendMetrics)
 
 module.exports = router

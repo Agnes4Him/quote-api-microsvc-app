@@ -8,7 +8,8 @@ const Home = () => {
     const handleOnClick = (e) => {
         e.preventDefault()
         //const url = 'http://localhost:3333'
-        const url = process.env.REACT_APP_BACKEND_URL
+        //const url = process.env.REACT_APP_BACKEND_URL
+        const url = 'http://api-app-backend:3333'
         fetch(url)
         .then((response) => {
             return response.json()
